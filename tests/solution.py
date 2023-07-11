@@ -26,8 +26,8 @@ def load_data_from_mysql(spark :pyspark.sql.SparkSession, db_name :str, table_na
             Port: 3306
             Database: 'classicmodels'
             Table_name: 'order_details'
-            Username: 'mysql_user'
-            Password: 'user'
+            Username: 'root'
+            Password: 'pass@word1'
     '''
 
     spark_df = spark.read \
@@ -35,8 +35,8 @@ def load_data_from_mysql(spark :pyspark.sql.SparkSession, db_name :str, table_na
         .option("driver","com.mysql.cj.jdbc.Driver") \
         .option("url", "jdbc:mysql://localhost:3306/"+db_name) \
         .option("dbtable", table_name) \
-        .option("user", "mysql_user") \
-        .option("password", "user") \
+        .option("user", "root") \
+        .option("password", "pass@word1") \
         .load()
     # print(spark_df.show(truncate=False))
     return spark_df
